@@ -1,0 +1,16 @@
+.DS_Store
+.config/fisherman
+.vim/plugged
+
+.netrwhist
+
+# Rust
+rust/
+
+# Emacs
+.emacs.d/straight/
+.emacs.d/transient/
+.emacs.d/elpa/
+.emacs.d/elisp/*
+.emacs.d/!.keep
+.emacs.d/recentf

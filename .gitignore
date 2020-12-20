@@ -1,0 +1,7 @@
+.DS_Store
+.config/fisherman
+.vim/plugged
+
+.netrwhist
+
+rust/
