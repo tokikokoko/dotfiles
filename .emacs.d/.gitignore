@@ -1,0 +1,11 @@
+straight/
+transient/
+elpa/
+elisp/*
+!.keep
+
+recentf
+
+projectile-bookmarks.eld
+favorite-packages.el
+
