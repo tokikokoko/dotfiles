@@ -1,0 +1,6 @@
+completions/*
+conf.d/*
+fishd.*
+functions/*
+!fish_prompt.fish
+fish_variables
