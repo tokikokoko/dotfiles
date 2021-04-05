@@ -30,14 +30,19 @@ if test -d /home/linuxbrew/.linuxbrew/bin
 end
 
 # node
-set -x N_PREFIX $HOME/.n
-set -x PATH $N_PREFIX/bin $PATH
-if test -d $HOME/.n
-    set -x PATH $HOME/.n/bin $PATH
+if test -d ./.volta
+    set -x VOLTA_HOME "$HOME/.volta"
+    set -x PATH "$VOLTA_HOME/bin" $PATH
 end
 
 if test -d ./node_modules/.bin
     set -x PATH ./node_modules/.bin $PATH
+end
+
+# deno
+if test -d ./.deno
+    set -x DENO_INSTALL "$HOME/.deno"
+    set -x PATH "$DENO_INSTALL/bin" $PATH
 end
 
 # yarn
