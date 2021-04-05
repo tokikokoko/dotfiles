@@ -26,6 +26,7 @@ Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'SirVer/ultisnips'
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -68,7 +69,6 @@ Plug 'google/vim-jsonnet'
 " OCaml
 if executable('opam')
 	Plug '$HOME/.opam/default/share/merlin/vim', { 'for': 'ocaml' }
-	Plug 'copy/deoplete-ocaml', { 'for': 'ocaml' }
 end
 call plug#end()
 
@@ -188,6 +188,7 @@ set fenc=utf-8
 " バックアップファイルを作らない
 set nobackup
 set nowritebackup
+set belloff=all
 " スワップファイルを作らない
 set noswapfile
 " 編集中のファイルが変更されたら自動で読み直す
@@ -335,16 +336,13 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-"===> deoplete
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#enable_smart_case = 1
-" let b:deoplete_disable_auto_complete=1 
-" let g:deoplete#complete_method = "complete"
-" no delay before completion
-" let g:deoplete#auto_complete_delay = 0
-" other completion sources suggested to disable
-" let g:deoplete#ignore_sources = {}
-" let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
+"===> snippet
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
 "===> asyncomplete.vim
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -444,3 +442,4 @@ let _curfile=expand("%:r")
 if _curfile == 'Makefile'
   set noexpandtab
 endif
+
