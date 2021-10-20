@@ -14,12 +14,16 @@ function re -d "Re-login current shell"
 end
 
 # tmux
-function ta -d "Attach tmux session"
+function tac -d "Attach tmux session"
     tmux a -t $argv[1]
 end
 
 function tc -d "Create tmux session"
     tmux new -s $argv[1]
+end
+
+function ta
+    tmux a -t (tmux ls -F "#S" | fzf)
 end
 
 # ocaml
@@ -105,6 +109,9 @@ end
 
 # ghq repositories
 abbr --add gcd 'cd (ghq list --full-path | fzf --exit-0 ; and echo -n ; or echo $PWD)'
+
+# uv repositories
+abbr --add ucd 'uv cd projects/(uv known projects | fzf --exit-0 ; and echo -n ; or echo $PWD)'
 
 # git checkout
 function fzf_git_checkout

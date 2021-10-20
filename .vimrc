@@ -36,6 +36,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-icons'
+Plug 'mattn/vim-lsp-settings'
+
 " fish
 Plug 'dag/vim-fish', { 'for': 'fish' }
 " toml
@@ -365,31 +367,8 @@ let g:indentLine_color_term = 220
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "===> LSP
 let g:lsp_highlight_references_enabled = 1
-if executable('rls')
-	au User lsp_setup call lsp#register_server({
-	\ 'name': 'rls',
-	\ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-	\ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
-	\ 'whitelist': ['rust'],
-	\ })
-endif
-if executable('solargraph')
-    " gem install solargraph
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'solargraph',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "true"},
-        \ 'whitelist': ['ruby'],
-        \ })
-endif
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-endif
+let g:lsp_settings_filetype_ruby = ['steep']
+let g:lsp_settings_filetype_rust = ['rust-analyzer']
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
     \ 'name': 'necovim',
     \ 'whitelist': ['vim'],
