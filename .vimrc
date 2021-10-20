@@ -342,6 +342,7 @@ command! -bang -nargs=* Rg
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
@@ -400,6 +401,8 @@ autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 autocmd FileType go setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
 "===> Rust
 autocmd FileType rust setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+"===> Lua
+autocmd FileType lua setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
 "===> YAML
 autocmd FileType yaml setl tabstop=2 expandtab shiftwidth=2 softtabstop=2
 "===> sh
