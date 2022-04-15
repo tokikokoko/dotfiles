@@ -39,7 +39,7 @@
 (leaf paren
   :doc "highlight matching paren"
   :tag "builtin"
-  :custom ((show-paren-delay . 0.1))
+  :custom ((show-paren-delay . 0.2))
   :global-minor-mode show-paren-mode)
 (leaf files
   :doc "file input and output commands for Emacs"
@@ -55,7 +55,8 @@
   :doc "process Emacs shell arguments"
   :tag "builtin" "internal"
   :custom `((auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))))
-    ;;; ivy-mode
+
+;;; ivy-mode
 (leaf ivy
   :doc "Incremental Vertical completYon"
   :req "emacs-24.5"
@@ -151,14 +152,23 @@
            (company-transformers . '(company-sort-by-occurrence)))
   :global-minor-mode global-company-mode)
 
+;;; mode line
+(leaf doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom (
+	   (doom-modeline-height . 25)
+	   (doom-modeline-bar-width . 4)
+	   ))
+
 ;;; lsp
 (leaf lsp-mode
   :doc "Language Server Protocol Support for Emacs"
   :ensure t
   :init
   (leaf lsp-ui
-     :ensure t
-     :hook (lsp-mode-hook . lsp-ui-mode))
+    :ensure t
+    :hook (lsp-mode-hook . lsp-ui-mode))
   )
 
 ;;; slime
@@ -169,21 +179,51 @@
   (load (expand-file-name "~/.roswell/helper.el"))
   )
 
+;;; org-mode
+(leaf org-bullets
+  :doc "Beutify org bullets"
+  :ensure t
+  :hook (org-mode-hook . org-bullets-mode))
+
+;;; restart utility
+(leaf restart-emacs
+  :ensure t)
+
 (provide 'init)
+
+;;; export custom file
+(setq custom-file (concat user-emacs-directory "/custom.el"))
 
 ;;; Edit
 (electric-pair-mode 1)
 
 ;;; Appearance
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+
 (setq default-frame-alist
       '(
-	(font . "HackGen Console 13")
+	(font . "Ricty Diminished Discord with Fira Code 16")
 	))
 (leaf kaolin-themes
   :ensure t
   :config
   (load-theme 'kaolin-aurora t)
   )
+
+(leaf modus-themes
+  :ensure t
+  :custom ((modus-themes-italic-constructs . t)
+	(modus-themes-bold-constructs . nil)
+	(modus-themes-region . '(bg-only no-extend))
+	(modus-themes-syntax . '(green-strings yellow-comments alt-syntax))
+	)
+  :config
+  (modus-themes-load-themes)
+  (modus-themes-load-vivendi)
+  (global-set-key (kbd "<f5>") 'modus-themes-toggle)
+  )
+
 (leaf highlight-indent-guides
   :doc "Indent line"
   :ensure t
@@ -191,47 +231,3 @@
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   )
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auto-revert-check-vc-info t)
- '(auto-revert-interval 0.3)
- '(auto-save-file-name-transforms '((".*" "~/Workspace/dotfiles/.emacs.d/backup/" t)))
- '(auto-save-interval 60)
- '(auto-save-list-file-prefix "~/Workspace/dotfiles/.emacs.d/backup/.saves-")
- '(auto-save-timeout 15)
- '(backup-directory-alist
-   '((".*" . "~/Workspace/dotfiles/.emacs.d/backup")
-     ("\\`/[^/:]+:[^/:]*:")))
- '(byte-compile-warnings '(cl-functions))
- '(company-idle-delay 0)
- '(company-minimum-prefix-length 1)
- '(company-transformers '(company-sort-by-occurrence))
- '(counsel-find-file-ignore-regexp "\\(?:\\.\\(?:\\.?/\\)\\)")
- '(counsel-yank-pop-separator "
-----------
-")
- '(delete-old-versions t)
- '(ivy-initial-inputs-alist nil)
- '(ivy-prescient-retain-classic-highlighting t)
- '(ivy-re-builders-alist
-   '((t . ivy-prescient-re-builder)
-     (swiper . ivy--regex-plus)) t)
- '(ivy-use-selectable-prompt t)
- '(package-archives
-   '(("gnu" . "https://elpa.gnu.org/packages/")
-     ("melpa" . "https://melpa.org/packages/")
-     ("org" . "https://orgmode.org/elpa/")))
- '(package-selected-packages '(blackout el-get hydra leaf-keywords leaf))
- '(prescient-aggressive-file-save t)
- '(prescient-save-file "~/Workspace/dotfiles/.emacs.d/prescient")
- '(show-paren-delay 0.1)
- '(version-control t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
