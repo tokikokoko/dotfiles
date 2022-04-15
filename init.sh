@@ -40,6 +40,7 @@ if [ ! -d $HOME/.config ]; then
     mkdir $HOME/.config
 fi
 ln -s $SCRIPT_DIR/fish $HOME/.config/
+ln -s $SCRIPT_DIR/nvim $HOME/.config/
 
 if [ ! -d $HOME/.emacs.d/elisp ]; then
     mkdir -p $SCRIPT_DIR/.emacs.d/elisp
