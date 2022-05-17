@@ -45,5 +45,8 @@ return require('packer').startup(function()
 
   use 'frenzyexists/aquarium-vim'
   use 'arcticicestudio/nord-vim'
+
+  -- Task runner
+  use 'thinca/vim-quickrun'
 end)
 
