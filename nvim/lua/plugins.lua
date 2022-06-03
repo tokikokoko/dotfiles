@@ -33,6 +33,11 @@ return require('packer').startup(function()
   -- fuzzy finder
   use 'vijaymarupudi/nvim-fzf'
   use 'vijaymarupudi/nvim-fzf-commands'
+  
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
 
   -- Grep
   use 'mileszs/ack.vim'
