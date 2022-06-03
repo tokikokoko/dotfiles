@@ -5,7 +5,7 @@ vim.cmd([[nnoremap <Leader>td :tabclose<CR>]])
 vim.cmd([[nnoremap <Leader>tn :tabn<CR>]])
 vim.cmd([[nnoremap <Leader>tp :tabp<CR>]])
 
-vim.cmd([[nnoremap <Leader>wd :close<CR>]])
+vim.cmd([[nnoremap <Leader>wd :q<CR>]])
 vim.cmd([[nnoremap <Leader>wv :vs<CR>]])
 vim.cmd([[nnoremap <Leader>ws :split<CR>]])
 vim.cmd([[nnoremap <Leader>wh :wincmd h<CR>]])
