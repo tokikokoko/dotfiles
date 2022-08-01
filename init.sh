@@ -24,12 +24,6 @@ $SCRIPT_DIR/go_installer.sh 1.15.6 linux amd64
 ## rust
 curl https://sh.rustup.rs -sSf | sh
 
-## opam
-sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
-
-# nodebrew
-curl -L git.io/nodebrew | perl - setup
-
 # linkapp
 ln -s $SCRIPT_DIR/.zshrc $HOME
 ln -s $SCRIPT_DIR/.bashrc $HOME
