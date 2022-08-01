@@ -1,9 +1,9 @@
 # PATH
 set -x PATH /usr/local/bin $PATH
 set -x PATH ~/.local/bin $PATH
+
 # ARCH
-# SSH
-set -x SSH_AUTH_SOCK 0 
+# set -x SSH_AUTH_SOCK 0 
 
 # general
 set DOT $HOME/dotfiles
@@ -62,18 +62,13 @@ if test -r $HOME/.mix/escripts
     set -x PATH $HOME/.mix/escripts $PATH
 end
 
-# opam configuration
-test -r $HOME/.opam/opam-init/init.fish; and source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-
 # go-lang
 if test -d $HOME/Workspace/go
     set -x GOPATH $HOME/Workspace/go
-    set -x GOENV_ROOT $HOME/.goenv
     if test -d /usr/local/go/bin
         set -x PATH /usr/local/go/bin $PATH
     end
     set -x PATH $GOENV_ROOT/bin $PATH
-    set -x GOENV_DISABLE_GOPATH 1
     if test -d $HOME/Workspace/go/bin
         set -x PATH $HOME/Workspace/go/bin $PATH
     end
@@ -88,17 +83,9 @@ if test -d $HOME/.cargo
     set -x PATH $HOME/.cargo/bin $PATH
 end
 
-# Qt
-set -x QT_HOMEBREW true
-
 # Kubectl
 set -x KUBECONFIG_DEFAULT $HOME/.kube/config 
 set -x KUBECONFIG $HOME/.kube/config 
-
-# snap
-if test -r /snap/bin
-    set -x PATH /snap/bin $PATH
-end
 
 if test -d $HOME/google-cloud-sdk/bin
     set -x PATH $HOME/google-cloud-sdk/bin $PATH
