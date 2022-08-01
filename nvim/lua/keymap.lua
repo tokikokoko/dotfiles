@@ -42,8 +42,8 @@ vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR
 
 vim.cmd([[nnoremap <Leader>fh :noh<CR>]])
 
-vim.cmd([[nnoremap <Leader>pf :Telescope find_files hidden=true<CR>]])
-vim.cmd([[nnoremap <Leader>bb :Telescope buffers<CR>]])
+vim.cmd([[nnoremap <Leader>pf :lua require('fzf-commands').files()<CR>]])
+vim.cmd([[nnoremap <Leader>bb :lua require('fzf-commands').bufferpicker()<CR>]])
 
 
 vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
