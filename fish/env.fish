@@ -30,7 +30,7 @@ if test -d /home/linuxbrew/.linuxbrew/bin
 end
 
 # node
-if test -d ./.volta
+if test -d $HOME/.volta
     set -x VOLTA_HOME "$HOME/.volta"
     set -x PATH "$VOLTA_HOME/bin" $PATH
 end
