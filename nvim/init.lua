@@ -3,17 +3,9 @@ require('completion')
 require('keymap')
 require('fzf-functions')
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  opts.on_attach = on_attach
+vim.cmd [[colorscheme dracula]]
 
-  server:setup(opts)
-  vim.cmd [[ do User LspAttachBuffers ]]
-end)
-
-vim.cmd [[colorscheme nord]]
-
+vim.go.syntax = 'on'
 vim.wo.number = true
 vim.wo.cursorline = true
 vim.go.clipboard = 'unnamed'
@@ -21,6 +13,31 @@ vim.go.backspace = 'indent,eol,start'
 vim.go.termguicolors = true
 vim.cmd([[autocmd FileType lua setl tabstop=2 expandtab shiftwidth=2 softtabstop=2]])
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
+
+require("mason").setup()
+require('mason-lspconfig').setup()
+require("mason-lspconfig").setup_handlers {
+  function (server_name)
+    require("lspconfig")[server_name].setup {}
+  end,
+}
+
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { },
+  sync_install = false,
+  auto_install = true,
+  ignore_install = { },
+  highlight = {
+    enable = true,
+    disable = { },
+    additional_vim_regex_highlighting = true,
+  },
+  indent = {
+    enable = true,
+    disable = { },
+  },
+}
 
 -- lualine
 -- e

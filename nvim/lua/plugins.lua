@@ -14,7 +14,13 @@ return require('packer').startup(function()
   -- You can alias plugin names
   use {'dracula/vim', as = 'dracula'}
   use "neovim/nvim-lspconfig"
-  use "williamboman/nvim-lsp-installer"
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  }
 
   -- completion
   use 'hrsh7th/cmp-nvim-lsp'
@@ -49,9 +55,11 @@ return require('packer').startup(function()
   use 'plasticboy/vim-markdown'
 
   use 'frenzyexists/aquarium-vim'
-  use 'arcticicestudio/nord-vim'
 
   -- Task runner
   use 'thinca/vim-quickrun'
+
+  -- Edit
+  use 'tpope/vim-surround'
 end)
 
