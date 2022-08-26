@@ -72,4 +72,7 @@ return require('packer').startup(function()
 
   -- Edit
   use 'tpope/vim-surround'
+
+  -- Util
+  use 'lambdalisue/fern.vim'
 end)

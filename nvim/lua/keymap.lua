@@ -13,7 +13,8 @@ vim.cmd([[nnoremap <Leader>wj :wincmd j<CR>]])
 vim.cmd([[nnoremap <Leader>wk :wincmd k<CR>]])
 vim.cmd([[nnoremap <Leader>wl :wincmd l<CR>]])
 
-vim.cmd([[nnoremap <Leader>an :Explore<CR>]])
+-- vim.cmd([[nnoremap <Leader>an :Explore<CR>]])
+vim.cmd([[nnoremap <Leader>an :Fern %:h<CR>]])
 vim.cmd([[nnoremap <Leader>at :terminal<CR>]])
 
 -- vim.cmd([[nnoremap <Leader>lK <cmd>lua vim.lsp.buf.hover()<CR>]])
