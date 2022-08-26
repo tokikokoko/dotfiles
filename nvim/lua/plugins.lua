@@ -7,15 +7,26 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use {
     'w0rp/ale',
-    ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
+    ft = { 'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex' },
     cmd = 'ALEEnable',
     config = 'vim.cmd[[ALEEnable]]'
   }
   -- You can alias plugin names
-  use {'dracula/vim', as = 'dracula'}
+  use { 'dracula/vim', as = 'dracula' }
   use "neovim/nvim-lspconfig"
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+      local saga = require("lspsaga")
+
+      saga.init_lsp_saga({
+        -- your configuration
+      })
+    end,
+  })
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -33,23 +44,23 @@ return require('packer').startup(function()
   use 'glepnir/indent-guides.nvim'
   use {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   -- fuzzy finder
   use 'vijaymarupudi/nvim-fzf'
   use 'vijaymarupudi/nvim-fzf-commands'
-  
+
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
   -- Grep
   use 'mileszs/ack.vim'
 
   -- Git
-  use 'tpope/vim-fugitive'
+  use 'dinhhuy258/git.nvim'
 
   -- Markdown
   use 'plasticboy/vim-markdown'
@@ -62,4 +73,3 @@ return require('packer').startup(function()
   -- Edit
   use 'tpope/vim-surround'
 end)
-
