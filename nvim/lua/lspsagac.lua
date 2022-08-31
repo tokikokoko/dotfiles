@@ -6,17 +6,17 @@ saga.init_lsp_saga()
 -- Lsp finder find the symbol definition implement reference
 -- when you use action in finder like open vsplit then you can
 -- use <C-t> to jump back
-keymap("n", "<leader>lf", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+keymap("n", "<leader>ll", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- Code action
 keymap("n", "<leader>la", "<cmd>Lspsaga code_action<CR>", { silent = true })
 keymap("v", "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
 
 -- Rename
-keymap("n", "lr", "<cmd>Lspsaga rename<CR>", { silent = true })
+keymap("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { silent = true })
 
 -- Definition preview
-keymap("n", "<leader>lo", "<cmd>Lspsaga preview_definition<CR>", { silent = true })
+keymap("n", "<leader>li", "<cmd>Lspsaga preview_definition<CR>", { silent = true })
 
 -- Show line diagnostics
 keymap("n", "<leader>ld", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
@@ -25,8 +25,8 @@ keymap("n", "<leader>ld", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = t
 keymap("n", "<leader>ld", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 
 -- Diagnsotic jump can use `<c-o>` to jump back
-keymap("n", "ln", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
-keymap("n", "lp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+keymap("n", "<leader>ln", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
+keymap("n", "<leader>lp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 
 -- Only jump to error
 keymap("n", "<leader>lN", function()
