@@ -19,10 +19,10 @@ keymap("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { silent = true })
 keymap("n", "<leader>li", "<cmd>Lspsaga preview_definition<CR>", { silent = true })
 
 -- Show line diagnostics
-keymap("n", "<leader>ld", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+-- keymap("n", "<leader>ld", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
 
 -- Show cursor diagnostic
-keymap("n", "<leader>ld", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
+keymap("n", "<leader>lt", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 
 -- Diagnsotic jump can use `<c-o>` to jump back
 keymap("n", "<leader>ln", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
