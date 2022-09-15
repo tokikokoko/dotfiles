@@ -3,6 +3,7 @@ require('completion')
 require('keymap')
 require('lspsagac')
 require('fzf-functions')
+require('org')
 
 vim.cmd [[colorscheme dracula]]
 
@@ -18,7 +19,7 @@ vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 require("mason").setup()
 require('mason-lspconfig').setup()
 require("mason-lspconfig").setup_handlers {
-  function (server_name)
+  function(server_name)
     require("lspconfig")[server_name].setup {}
   end,
 }
@@ -51,18 +52,18 @@ require('git').setup({
 
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all"
-  ensure_installed = { },
+  ensure_installed = {},
   sync_install = false,
   auto_install = true,
-  ignore_install = { },
+  ignore_install = {},
   highlight = {
     enable = true,
-    disable = { },
+    disable = {},
     additional_vim_regex_highlighting = true,
   },
   indent = {
     enable = true,
-    disable = { },
+    disable = {},
   },
 }
 

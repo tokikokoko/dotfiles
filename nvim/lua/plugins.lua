@@ -75,4 +75,9 @@ return require('packer').startup(function()
 
   -- Util
   -- use 'lambdalisue/fern.vim'
+
+  use { 'nvim-orgmode/orgmode', config = function()
+    require('orgmode').setup {}
+  end
+  }
 end)
