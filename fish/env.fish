@@ -40,7 +40,7 @@ if test -d ./node_modules/.bin
 end
 
 # deno
-if test -d ./.deno
+if test -d $HOME/.deno
     set -x DENO_INSTALL "$HOME/.deno"
     set -x PATH "$DENO_INSTALL/bin" $PATH
 end
