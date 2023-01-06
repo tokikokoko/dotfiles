@@ -13,6 +13,8 @@ return require('packer').startup(function()
   }
   -- You can alias plugin names
   use { 'dracula/vim', as = 'dracula' }
+  use "cideM/yui"
+  use "rebelot/kanagawa.nvim"
   use "neovim/nvim-lspconfig"
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
@@ -42,10 +44,10 @@ return require('packer').startup(function()
 
   -- appears
   use 'glepnir/indent-guides.nvim'
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
+  -- use {
+  --   'nvim-lualine/lualine.nvim',
+  --   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  -- }
 
   -- fuzzy finder
   use 'vijaymarupudi/nvim-fzf'

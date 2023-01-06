@@ -33,4 +33,11 @@ if status --is-login
     if test -f $HOME/.cargo/bin/starship
         starship init fish | source
     end
+
+    # Base16 Shell
+    set BASE16_SHELL "$HOME/.config/base16-shell/"
+    source "$BASE16_SHELL/profile_helper.fish"
+
+    # base16-materia
+    base16-gruvbox-light-medium
 end

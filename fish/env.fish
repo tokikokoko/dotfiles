@@ -21,7 +21,7 @@ if test -d $HOME/.fzf/bin
     set -x FZF_DEFAULT_COMMAND 'rg -j 2 --files --hidden --follow --glob "!.git/*"'
     set -x FZF_LEGACY_KEYBINDINGS 0
     set -x FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
-    set -x FZF_DEFAULT_OPTS '--color=dark --ansi'
+    set -x FZF_DEFAULT_OPTS '--color=light --ansi'
 end
 
 # brew

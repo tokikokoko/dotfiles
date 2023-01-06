@@ -5,11 +5,14 @@ require('lspsagac')
 require('fzf-functions')
 require('org')
 
-vim.cmd [[colorscheme dracula]]
+-- Colorscheme settings
+vim.go.background = 'light'
+vim.cmd [[colorscheme kanagawa]]
 
 vim.go.syntax = 'on'
+vim.go.lazyredraw = true
 vim.wo.number = true
-vim.wo.cursorline = true
+vim.wo.cursorline = false
 vim.go.clipboard = 'unnamed'
 vim.go.backspace = 'indent,eol,start'
 vim.go.termguicolors = true
@@ -23,6 +26,12 @@ require("mason-lspconfig").setup_handlers {
     require("lspconfig")[server_name].setup {}
   end,
 }
+
+require('indent_guides').setup({
+  indent_start_level = 2;
+  even_colors = { fg ='#b0c4de',bg='#b0c4de' };
+  odd_colors = {fg='#b0c4de',bg='#b0c4de'};
+})
 
 -- Git
 require('git').setup({
@@ -68,12 +77,11 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- lualine
--- e
-require('lualine').setup {
-  options = {
-    theme = 'dracula'
-  }
-}
+-- require('lualine').setup {
+--   options = {
+--     theme = 'dracula'
+--   }
+-- }
 
 -- QuickRun
 vim.g.quickrun_config = {
@@ -146,9 +154,6 @@ vim.cmd([[autocmd FileType dockerfile setl tabstop=4 expandtab shiftwidth=4 soft
 vim.g.ackprg = 'rg --vimgrep --no-heading'
 vim.g.vim_markdown_folding_disabled = 1
 vim.cmd([[au FileType markdown nnoremap <Leader>fo :vim "^\#\+" % \| cw<CR>]])
-
--- Colorscheme settings
-vim.go.background = 'dark'
 
 -- set autoread
 -- trigger `autoread` when files changes on disk
