@@ -53,3 +53,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ## nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+## base16-shell
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
