@@ -18,17 +18,6 @@ return require('packer').startup(function()
   use "neovim/nvim-lspconfig"
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-  use({
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-    config = function()
-      local saga = require("lspsaga")
-
-      saga.init_lsp_saga({
-        -- your configuration
-      })
-    end,
-  })
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -50,12 +39,12 @@ return require('packer').startup(function()
   -- }
 
   -- fuzzy finder
-  use 'vijaymarupudi/nvim-fzf'
-  use 'vijaymarupudi/nvim-fzf-commands'
+  -- use 'vijaymarupudi/nvim-fzf'
+  -- use 'vijaymarupudi/nvim-fzf-commands'
 
   use {
-    'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    'nvim-telescope/telescope.nvim' , branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   -- Grep
@@ -74,6 +63,9 @@ return require('packer').startup(function()
 
   -- Edit
   use 'tpope/vim-surround'
+
+  -- Search
+  use 'rlane/pounce.nvim'
 
   -- Util
   -- use 'lambdalisue/fern.vim'

@@ -1,8 +1,7 @@
 require('plugins')
 require('completion')
 require('keymap')
-require('lspsagac')
-require('fzf-functions')
+-- require('fzf-functions')
 require('org')
 
 -- Colorscheme settings
