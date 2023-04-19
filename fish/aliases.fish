@@ -10,9 +10,11 @@ for p in $PATH
         function ls -d "[alias]ls"
             exa $argv
         end
+        alias la="ls -a"
         break
     end
 end
+
 
 # git
 abbr --add gi 'git'
