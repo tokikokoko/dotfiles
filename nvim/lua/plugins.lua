@@ -32,15 +32,11 @@ return require('packer').startup(function()
   use 'hrsh7th/nvim-cmp'
 
   -- appears
-  use 'glepnir/indent-guides.nvim'
+  use "lukas-reineke/indent-blankline.nvim"
   -- use {
   --   'nvim-lualine/lualine.nvim',
   --   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   -- }
-
-  -- fuzzy finder
-  -- use 'vijaymarupudi/nvim-fzf'
-  -- use 'vijaymarupudi/nvim-fzf-commands'
 
   use {
     'nvim-telescope/telescope.nvim' , branch = '0.1.x',
@@ -63,15 +59,11 @@ return require('packer').startup(function()
 
   -- Edit
   use 'tpope/vim-surround'
+  use 'mg979/vim-visual-multi'
 
   -- Search
   use 'rlane/pounce.nvim'
 
   -- Util
-  -- use 'lambdalisue/fern.vim'
-
-  use { 'nvim-orgmode/orgmode', config = function()
-    require('orgmode').setup {}
-  end
-  }
+  use 'lambdalisue/fern.vim'
 end)

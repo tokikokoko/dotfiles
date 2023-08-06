@@ -2,7 +2,6 @@ require('plugins')
 require('completion')
 require('keymap')
 -- require('fzf-functions')
-require('org')
 
 -- Colorscheme settings
 vim.go.background = 'light'
@@ -15,9 +14,13 @@ vim.wo.cursorline = false
 vim.go.clipboard = 'unnamed'
 vim.go.backspace = 'indent,eol,start'
 vim.go.termguicolors = true
-vim.cmd([[autocmd FileType lua setl tabstop=2 expandtab shiftwidth=2 softtabstop=2]])
+vim.go.tabstop = 2
+vim.go.shiftwidth = 2
+vim.go.expandtab = true
+
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
+-- LSP
 require("mason").setup()
 require('mason-lspconfig').setup()
 require("mason-lspconfig").setup_handlers {
@@ -25,12 +28,24 @@ require("mason-lspconfig").setup_handlers {
     require("lspconfig")[server_name].setup {}
   end,
 }
-
-require('indent_guides').setup({
-  indent_start_level = 2;
-  even_colors = { fg ='#b0c4de',bg='#b0c4de' };
-  odd_colors = {fg='#b0c4de',bg='#b0c4de'};
+vim.diagnostic.config({
+  virtual_text = false,
+  underline = false,
 })
+-- Show line diagnostics automatically in hover window
+-- vim.o.updatetime = 250
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+-- Indent
+-- vim.opt.list = true
+-- vim.opt.listchars:append "space:⋅"
+-- vim.opt.listchars:append "eol:↴"
+
+require("indent_blankline").setup {
+  show_end_of_line = true,
+  show_current_context = true,
+  show_current_context_start = true,
+}
 
 -- Git
 require('git').setup({
@@ -75,12 +90,13 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- lualine
--- require('lualine').setup {
---   options = {
---     theme = 'dracula'
---   }
--- }
+-- Multicursor
+-- vim.cmd([[let g:VM_maps = {}]])
+-- vim.cmd([[let g:VM_maps['Find Under']         = '<C-d>']])
+-- vim.cmd([[let g:VM_maps['Find Subword Under'] = '<C-d>']])
+
+
+
 
 -- QuickRun
 vim.g.quickrun_config = {
