@@ -147,7 +147,7 @@ vim.cmd([[au FileType go nnoremap <Leader>rf :QuickRun go.fmt<CR>]])
 
 -- File format
 vim.cmd([[autocmd FileType html setl tabstop=4 expandtab shiftwidth=2 softtabstop=2]])
-vim.cmd([[autocmd FileType javascript setl tabstop=4 expandtab shiftwidth=2 softtabstop=2]])
+vim.cmd([[autocmd FileType javascript setl tabstop=2 expandtab shiftwidth=2 softtabstop=2]])
 vim.cmd([[autocmd FileType vue syntax sync fromstart]])
 vim.cmd([[autocmd FileType haskell setl tabstop=8 expandtab shiftwidth=4 softtabstop=4]])
 vim.cmd([[autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4]])
