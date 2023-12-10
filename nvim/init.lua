@@ -1,7 +1,21 @@
-require('plugins')
+-- require('plugins')
 require('completion')
 require('keymap')
 -- require('fzf-functions')
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require('plugins-lazy')
 
 -- Colorscheme settings
 vim.go.background = 'light'
@@ -18,7 +32,7 @@ vim.go.tabstop = 2
 vim.go.shiftwidth = 2
 vim.go.expandtab = true
 
-vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
+-- vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 -- LSP
 require("mason").setup()
@@ -177,3 +191,4 @@ vim.cmd([[set autoread]])
 vim.cmd([[autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif]])
 -- notification after file change
 vim.cmd([[autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]])
+
