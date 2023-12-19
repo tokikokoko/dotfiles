@@ -56,7 +56,9 @@ vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>Pounce<CR>', {})
 
 vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
 
-vim.api.nvim_set_keymap('n', '<leader>gg', ':<C-u>Ack<Space>', {})
+vim.api.nvim_set_keymap('n', '<leader>gg', ':<C-u>grep<Space>', {})
+vim.api.nvim_set_keymap('n', '<leader>gc', ':<C-u>cwindow<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>gf', ':<C-u>cfile<Space>', {})
 
 -- clipboard
 -- vim.cmd([[vnoremap <C-y> :'<,'>w !xclip -selection clipboard<Cr><Cr>]])

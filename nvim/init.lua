@@ -1,8 +1,8 @@
--- require('plugins')
 require('completion')
 require('keymap')
 -- require('fzf-functions')
 
+-- Package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -15,11 +15,23 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require('plugins-lazy')
+require('plugins')
 
 -- Colorscheme settings
 vim.go.background = 'light'
 vim.cmd [[colorscheme kanagawa]]
+
+-- util function
+local function executable(e)
+  return vim.fn.executable(e) > 0
+end
+
+local function add(value, str, sep)
+  sep = sep or ','
+  str = str or ''
+  value = type(value) == 'table' and table.concat(value, sep) or value
+  return str ~= '' and table.concat({ value, str }, sep) or value
+end
 
 vim.go.syntax = 'on'
 vim.go.lazyredraw = true
@@ -31,6 +43,11 @@ vim.go.termguicolors = true
 vim.go.tabstop = 2
 vim.go.shiftwidth = 2
 vim.go.expandtab = true
+
+if executable('rg') then
+  vim.o.grepprg =
+    [[rg --hidden --glob "!.git" --smart-case --vimgrep]]
+end
 
 -- vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
