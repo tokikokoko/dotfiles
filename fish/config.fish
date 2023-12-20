@@ -35,9 +35,11 @@ if status --is-login
     end
 
     # Base16 Shell
-    set BASE16_SHELL "$HOME/.config/base16-shell/"
-    source "$BASE16_SHELL/profile_helper.fish"
+    # set BASE16_SHELL "$HOME/.config/base16-shell/"
+    # source "$BASE16_SHELL/profile_helper.fish"
 
     # base16-materia
-    base16-gruvbox-light-medium
+    # base16-gruvbox-light-medium
 end
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
