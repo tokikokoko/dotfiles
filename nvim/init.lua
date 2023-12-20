@@ -18,8 +18,10 @@ vim.opt.rtp:prepend(lazypath)
 require('plugins')
 
 -- Colorscheme settings
+vim.go.termguicolors = true
 vim.go.background = 'light'
-vim.cmd [[colorscheme kanagawa]]
+-- vim.cmd[[colorscheme catppuccin-latte]]
+vim.cmd[[colorscheme melange]]
 
 -- util function
 local function executable(e)
@@ -39,7 +41,6 @@ vim.wo.number = true
 vim.wo.cursorline = false
 vim.go.clipboard = 'unnamed'
 vim.go.backspace = 'indent,eol,start'
-vim.go.termguicolors = true
 vim.go.tabstop = 2
 vim.go.shiftwidth = 2
 vim.go.expandtab = true

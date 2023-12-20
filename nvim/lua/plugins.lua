@@ -4,7 +4,6 @@ return require('lazy').setup({
   -- You can alias plugin names
   { 'dracula/vim', as = 'dracula' },
   "cideM/yui",
-  "rebelot/kanagawa.nvim",
   "neovim/nvim-lspconfig",
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
@@ -16,8 +15,8 @@ return require('lazy').setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
-          sync_install = false,
+          -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+          sync_install = true,
           highlight = { enable = true },
           indent = { enable = true },
         })
@@ -37,6 +36,9 @@ return require('lazy').setup({
   --   'nvim-lualine/lualine.nvim',
   --   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   -- }
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "savq/melange-nvim" },
+  "rebelot/kanagawa.nvim",
 
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
