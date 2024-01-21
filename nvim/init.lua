@@ -1,7 +1,3 @@
-require('completion')
-require('keymap')
--- require('fzf-functions')
-
 -- Package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -16,6 +12,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('plugins')
+
+-- require('fzf-functions')
+require('keymap')
+require('completion')
 
 -- Colorscheme settings
 vim.go.termguicolors = true
