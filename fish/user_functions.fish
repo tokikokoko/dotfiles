@@ -129,5 +129,11 @@ function ruuid
     uuidgen | sed -z 's/\n//g'
 end
 
+function paste64
+    echo -ne '\e]52;0;'
+    base64 | tr -d '\012'
+    echo -ne '\e\\'
+end
+
 # Add current dir path
 abbr --add apath 'set -x PATH $PWD/bin $PATH'
