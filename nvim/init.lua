@@ -39,7 +39,7 @@ vim.go.syntax = 'on'
 vim.go.lazyredraw = true
 vim.wo.number = true
 vim.wo.cursorline = false
-vim.go.clipboard = 'unnamed'
+vim.opt.clipboard:append{'unnamedplus'}
 vim.go.backspace = 'indent,eol,start'
 vim.go.tabstop = 2
 vim.go.shiftwidth = 2
@@ -106,22 +106,22 @@ require('git').setup({
   target_branch = "master",
 })
 
-require('nvim-treesitter.configs').setup {
-  -- A list of parser names, or "all"
-  ensure_installed = {},
-  sync_install = false,
-  auto_install = true,
-  ignore_install = {},
-  highlight = {
-    enable = true,
-    disable = {},
-    additional_vim_regex_highlighting = true,
-  },
-  indent = {
-    enable = true,
-    disable = {},
-  },
-}
+-- require('nvim-treesitter.configs').setup {
+--   -- A list of parser names, or "all"
+--   ensure_installed = {},
+--   sync_install = false,
+--   auto_install = true,
+--   ignore_install = {},
+--   highlight = {
+--     enable = true,
+--     disable = {},
+--     additional_vim_regex_highlighting = true,
+--   },
+--   indent = {
+--     enable = true,
+--     disable = {},
+--   },
+-- }
 
 -- Multicursor
 -- vim.cmd([[let g:VM_maps = {}]])

@@ -8,20 +8,20 @@ return require('lazy').setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function ()
-      local configs = require("nvim-treesitter.configs")
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   build = ":TSUpdate",
+  --   config = function ()
+  --     local configs = require("nvim-treesitter.configs")
 
-      configs.setup({
-          -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
-          sync_install = true,
-          highlight = { enable = true },
-          indent = { enable = true },
-        })
-    end
-   },
+  --     configs.setup({
+  --         -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+  --         sync_install = true,
+  --         highlight = { enable = true },
+  --         indent = { enable = true },
+  --       })
+  --   end
+  --  },
 
   -- completion
   'hrsh7th/cmp-nvim-lsp',
