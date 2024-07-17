@@ -8,6 +8,10 @@ return require('lazy').setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
 
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate"
+  },
   -- {
   --   "nvim-treesitter/nvim-treesitter",
   --   build = ":TSUpdate",
