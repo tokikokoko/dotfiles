@@ -10,22 +10,20 @@ return require('lazy').setup({
 
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate"
-  },
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   build = ":TSUpdate",
-  --   config = function ()
-  --     local configs = require("nvim-treesitter.configs")
+    build = ":TSUpdate",
+    main = 'nvim-treesitter.configs',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function ()
+      local configs = require("nvim-treesitter.configs")
 
-  --     configs.setup({
-  --         -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
-  --         sync_install = true,
-  --         highlight = { enable = true },
-  --         indent = { enable = true },
-  --       })
-  --   end
-  --  },
+      configs.setup({
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "elixir", "javascript", "html", "vue", "rust" },
+          sync_install = true,
+          highlight = { enable = true },
+          indent = { enable = true },
+        })
+    end
+  },
 
   -- completion
   'hrsh7th/cmp-nvim-lsp',
