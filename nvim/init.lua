@@ -20,8 +20,8 @@ require('completion')
 -- Colorscheme settings
 vim.go.termguicolors = true
 vim.go.background = 'light'
--- vim.cmd[[colorscheme catppuccin-latte]]
-vim.cmd[[colorscheme melange]]
+vim.cmd[[colorscheme catppuccin-latte]]
+-- vim.cmd[[colorscheme melange]]
 
 -- util function
 local function executable(e)
