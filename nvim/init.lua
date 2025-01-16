@@ -44,6 +44,7 @@ vim.go.backspace = 'indent,eol,start'
 vim.go.tabstop = 2
 vim.go.shiftwidth = 2
 vim.go.expandtab = true
+vim.o.guifont = "Nerd Font"
 
 if executable('rg') then
   vim.o.grepprg =
@@ -175,6 +176,21 @@ vim.cmd([[au FileType qf nnoremap <silent><buffer>q :quit<CR>]])
 -- Golang
 vim.cmd([[au FileType go nnoremap <Leader>rt :QuickRun go.test<CR>]])
 vim.cmd([[au FileType go nnoremap <Leader>rf :QuickRun go.fmt<CR>]])
+
+-- notify
+vim.notify = require("notify")
+
+-- noice
+require("noice").setup({
+  presets = {
+    -- you can enable a preset by setting it to true, or a table that will override the preset config
+    -- you can also add custom presets that you can enable/disable with enabled=true
+    bottom_search = false, -- use a classic bottom cmdline for search
+    command_palette = false, -- position the cmdline and popupmenu together
+    long_message_to_split = false, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+  }
+})
 
 
 -- File format
