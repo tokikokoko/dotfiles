@@ -44,7 +44,6 @@ vim.go.backspace = 'indent,eol,start'
 vim.go.tabstop = 2
 vim.go.shiftwidth = 2
 vim.go.expandtab = true
-vim.o.guifont = "Nerd Font"
 
 if executable('rg') then
   vim.o.grepprg =
