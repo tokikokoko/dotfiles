@@ -20,7 +20,7 @@ require('completion')
 -- Colorscheme settings
 vim.go.termguicolors = true
 vim.go.background = 'light'
-vim.cmd[[colorscheme catppuccin-latte]]
+vim.cmd [[colorscheme catppuccin-latte]]
 -- vim.cmd[[colorscheme melange]]
 
 -- util function
@@ -39,7 +39,7 @@ vim.go.syntax = 'on'
 vim.go.lazyredraw = true
 vim.wo.number = true
 vim.wo.cursorline = false
-vim.opt.clipboard:append{'unnamedplus'}
+vim.opt.clipboard:append { 'unnamedplus' }
 vim.go.backspace = 'indent,eol,start'
 vim.go.tabstop = 2
 vim.go.shiftwidth = 2
@@ -47,10 +47,8 @@ vim.go.expandtab = true
 
 if executable('rg') then
   vim.o.grepprg =
-    [[rg --hidden --glob "!.git" --smart-case --vimgrep]]
+  [[rg --hidden --glob "!.git" --smart-case --vimgrep]]
 end
-
--- vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 -- LSP
 require("mason").setup()
@@ -64,6 +62,7 @@ vim.diagnostic.config({
   virtual_text = false,
   underline = false,
 })
+
 -- Show line diagnostics automatically in hover window
 -- vim.o.updatetime = 250
 -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
@@ -103,7 +102,7 @@ require('git').setup({
     revert_file = "<Leader>gR",
   },
   -- Default target branch when create a pull request
-  target_branch = "master",
+  target_branch = "main",
 })
 
 -- require('nvim-treesitter.configs').setup {
@@ -176,22 +175,6 @@ vim.cmd([[au FileType qf nnoremap <silent><buffer>q :quit<CR>]])
 vim.cmd([[au FileType go nnoremap <Leader>rt :QuickRun go.test<CR>]])
 vim.cmd([[au FileType go nnoremap <Leader>rf :QuickRun go.fmt<CR>]])
 
--- notify
-vim.notify = require("notify")
-
--- noice
-require("noice").setup({
-  presets = {
-    -- you can enable a preset by setting it to true, or a table that will override the preset config
-    -- you can also add custom presets that you can enable/disable with enabled=true
-    bottom_search = false, -- use a classic bottom cmdline for search
-    command_palette = false, -- position the cmdline and popupmenu together
-    long_message_to_split = false, -- long messages will be sent to a split
-    inc_rename = false, -- enables an input dialog for inc-rename.nvim
-  }
-})
-
-
 -- File format
 vim.cmd([[autocmd FileType html setl tabstop=4 expandtab shiftwidth=2 softtabstop=2]])
 vim.cmd([[autocmd FileType javascript setl tabstop=2 expandtab shiftwidth=2 softtabstop=2]])
@@ -223,5 +206,5 @@ vim.cmd([[au FileType markdown nnoremap <Leader>fo :vim "^\#\+" % \| cw<CR>]])
 vim.cmd([[set autoread]])
 vim.cmd([[autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif]])
 -- notification after file change
-vim.cmd([[autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]])
-
+vim.cmd(
+[[autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]])
