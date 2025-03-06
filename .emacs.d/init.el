@@ -152,15 +152,6 @@
            (company-transformers . '(company-sort-by-occurrence)))
   :global-minor-mode global-company-mode)
 
-;;; mode line
-(leaf doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :custom (
-	   (doom-modeline-height . 25)
-	   (doom-modeline-bar-width . 4)
-	   ))
-
 ;;; lsp
 (leaf lsp-mode
   :doc "Language Server Protocol Support for Emacs"
@@ -185,6 +176,15 @@
   :ensure t
   :hook (org-mode-hook . org-bullets-mode))
 
+(use-package org-modern
+  :custom
+  (org-modern-progress '("○" "◔" "◑" "◕" "✅"))
+  :hook
+  ((org-mode . org-modern-mode)
+   (org-agenda-finalize . org-modern-agenda)))
+
+(setq org-agenda-file '("~/org/work/"))
+
 ;;; restart utility
 (leaf restart-emacs
   :ensure t)
@@ -201,28 +201,18 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+(setq default-directory (concat (getenv "HOME") "/" "Documents"))
+(cd (concat (getenv "HOME") "/" "Documents"))
+
 (setq default-frame-alist
       '(
-	(font . "Ricty Diminished Discord with Fira Code 16")
+	(font . "PlemolJP Console NF 17")
 	))
-(leaf kaolin-themes
-  :ensure t
-  :config
-  (load-theme 'kaolin-aurora t)
-  )
 
-(leaf modus-themes
+(leaf solarized-theme
   :ensure t
-  :custom ((modus-themes-italic-constructs . t)
-	(modus-themes-bold-constructs . nil)
-	(modus-themes-region . '(bg-only no-extend))
-	(modus-themes-syntax . '(green-strings yellow-comments alt-syntax))
-	)
   :config
-  (modus-themes-load-themes)
-  (modus-themes-load-vivendi)
-  (global-set-key (kbd "<f5>") 'modus-themes-toggle)
-  )
+  (load-theme 'solarized-light t))
 
 (leaf highlight-indent-guides
   :doc "Indent line"
