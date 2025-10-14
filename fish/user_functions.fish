@@ -110,9 +110,6 @@ end
 # ghq repositories
 abbr --add gcd 'cd (ghq list --full-path | fzf --exit-0 ; and echo -n ; or echo $PWD)'
 
-# uv repositories
-abbr --add ucd 'uv cd projects/(uv known projects | fzf --exit-0 ; and echo -n ; or echo $PWD)'
-
 # git checkout
 function fzf_git_checkout
     git --no-pager branch -a -vv | fzf +m | sed "s/remotes\/origin\///" | sed "s/^* //" | awk '{print $1}'

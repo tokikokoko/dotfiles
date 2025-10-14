@@ -211,5 +211,5 @@ return require('lazy').setup({
 
 
   -- { dir = '~/Workspace/uuid-rs.nvim', build = ":UuidBuild" },
-  { dir = '/home/keita/ghq/github.com/vim-denops/denops-helloworld.vim' },
+  -- { dir = '/home/keita/ghq/github.com/vim-denops/denops-helloworld.vim' },
 })
