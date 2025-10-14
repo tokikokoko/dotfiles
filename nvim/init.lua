@@ -53,11 +53,6 @@ end
 -- LSP
 require("mason").setup()
 require('mason-lspconfig').setup()
-require("mason-lspconfig").setup_handlers {
-  function(server_name)
-    require("lspconfig")[server_name].setup {}
-  end,
-}
 vim.diagnostic.config({
   virtual_text = false,
   underline = false,
@@ -194,7 +189,7 @@ vim.cmd([[autocmd FileType yaml setl tabstop=2 expandtab shiftwidth=2 softtabsto
 vim.cmd([[autocmd FileType sh setl tabstop=4 expandtab shiftwidth=4 softtabstop=4]])
 vim.cmd([[autocmd FileType fish setl tabstop=8 expandtab shiftwidth=4 softtabstop=4]])
 vim.cmd([[autocmd FileType sql setl tabstop=2 expandtab shiftwidth=2 softtabstop=2]])
-vim.cmd([[autocmd FileType markdown setl tabstop=4 expandtab shiftwidth=4 softtabstop=4]])
+vim.cmd([[autocmd FileType markdown setl tabstop=2 expandtab shiftwidth=2 softtabstop=2]])
 vim.cmd([[autocmd FileType dockerfile setl tabstop=4 expandtab shiftwidth=4 softtabstop=4]])
 
 vim.g.ackprg = 'rg --vimgrep --no-heading'
