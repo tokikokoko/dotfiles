@@ -26,36 +26,6 @@
     ;; initialize leaf-keywords.el
     (leaf-keywords-init)))
 
-(leaf bytecomp
-  :doc "compilation of Lisp code into byte code"
-  :tag "builtin" "lisp"
-  :custom (byte-compile-warnings . '(cl-functions)))
-(leaf autorevert
-  :doc "revert buffers when files on disk change"
-  :tag "builtin"
-  :custom ((auto-revert-interval . 0.3)
-           (auto-revert-check-vc-info . t))
-  :global-minor-mode global-auto-revert-mode)
-(leaf paren
-  :doc "highlight matching paren"
-  :tag "builtin"
-  :custom ((show-paren-delay . 0.2))
-  :global-minor-mode show-paren-mode)
-(leaf files
-  :doc "file input and output commands for Emacs"
-  :tag "builtin"
-  :custom `((auto-save-timeout . 15)
-	    (auto-save-interval . 60)
-	    (auto-save-file-name-transforms . '((".*" ,(locate-user-emacs-file "backup/") t)))
-	    (backup-directory-alist . '((".*" . ,(locate-user-emacs-file "backup"))
-                                        (,tramp-file-name-regexp . nil)))
-	    (version-control . t)
-	    (delete-old-versions . t)))
-(leaf startup
-  :doc "process Emacs shell arguments"
-  :tag "builtin" "internal"
-  :custom `((auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))))
-
 ;;; ivy-mode
 (leaf ivy
   :doc "Incremental Vertical completYon"
@@ -127,63 +97,86 @@
   :custom ((ivy-prescient-retain-classic-highlighting . t))
   :global-minor-mode t)
 
-;;; company
-(leaf company
-  :doc "Modular text completion framework"
-  :req "emacs-24.3"
-  :tag "matching" "convenience" "abbrev" "emacs>=24.3"
-  :url "http://company-mode.github.io/"
-  :emacs>= 24.3
-  :ensure t
-  :blackout t
-  :leaf-defer nil
-  :bind ((company-active-map
-          ("M-n" . nil)
-          ("M-p" . nil)
-          ("C-s" . company-filter-candidates)
-          ("C-n" . company-select-next)
-          ("C-p" . company-select-previous)
-          ("<tab>" . company-complete-selection))
-         (company-search-map
-          ("C-n" . company-select-next)
-          ("C-p" . company-select-previous)))
-  :custom ((company-idle-delay . 0)
-           (company-minimum-prefix-length . 1)
-           (company-transformers . '(company-sort-by-occurrence)))
-  :global-minor-mode global-company-mode)
-
-;;; lsp
-(leaf lsp-mode
-  :doc "Language Server Protocol Support for Emacs"
-  :ensure t
-  :init
-  (leaf lsp-ui
-    :ensure t
-    :hook (lsp-mode-hook . lsp-ui-mode))
-  )
-
-;;; slime
-(leaf ac-slime
-  :doc "Awesome lisp develop environment"
-  :ensure t
-  :init
-  (load (expand-file-name "~/.roswell/helper.el"))
-  )
-
 ;;; org-mode
-(leaf org-bullets
-  :doc "Beutify org bullets"
-  :ensure t
-  :hook (org-mode-hook . org-bullets-mode))
-
 (use-package org-modern
-  :custom
-  (org-modern-progress '("○" "◔" "◑" "◕" "✅"))
+  :custom (
+	   (org-modern-fold-stars '(("i>>" . "i>") ("ii>>" . "ii>") ("iii>>" . "iii>") ("iv>>" . "iv>") ("v>>" . "v>")))
+	   (org-modern-todo-faces '(
+	     ("WAIT"  . (:background "Orange"      :weight bold))
+	     ("TODO"  . (:background "Yellow" :weight bold))
+	     ("REMD"  . (:background "PaleGreen3"      :weight bold))
+	     ("TRET"  . (:background "dark gray"       :weight bold))
+	     ))
+	   )
   :hook
   ((org-mode . org-modern-mode)
    (org-agenda-finalize . org-modern-agenda)))
 
-(setq org-agenda-file '("~/org/work/"))
+(setq org-directory "~/Documents/org/")
+(setq org-agenda-files (list org-directory))
+(add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
+
+; C-c a で org-agenda メニューを起動
+(define-key global-map "\C-ca" 'org-agenda)
+
+; 同じウィンドウ上にアジェンダ表示
+(setq org-agenda-window-setup 'current-window)
+; アジェンダ表示で下線を用いる
+(add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
+(setq hl-line-face 'underline)
+; 標準の祝日を利用しない
+(setq calendar-holidays nil)
+
+;; org-journal
+(leaf org-journal
+  :emacs>= 25.1
+  :ensure t
+  :custom `(
+	    (org-journal-dir . "~/Documents/org")
+	    (org-journal-file-format . "%Y-%m-%d.org")
+	    (org-journal-date-format . "%Y-%m-%d")
+	    (org-journal-time-format . "%R\n\n")
+	    )
+  :bind (("\C-cjn" . org-journal-new-entry))
+  )
+
+; TODOキーワード設定
+(setq org-todo-keywords
+  '((sequence "TODO(t)" "DOIN(n)" "WAIT(w)" "TRET(e)" "REMD(r)"
+       "|" "DONE(d)" "SKIP(x)")))
+(setq org-todo-keyword-faces
+  '(
+    ("WAIT"  . (:foreground "CadetBlue3"      :weight bold))
+    ("TODO"  . (:foreground "LightGoldenrod3" :weight bold))
+    ("REMD"  . (:foreground "PaleGreen3"      :weight bold))
+    ("TRET"  . (:foreground "dark gray"       :weight bold))
+    ))
+
+; DONEとなった時間を記録しない
+(setq org-log-done nil)
+
+; DONEステータス時の見出しの色を変えない
+(setq org-fontify-done-headline nil)
+
+;; org-capture
+;; C-c c で org-capture メニューを起動
+(global-set-key "\C-cc" 'org-capture)
+;; C-c c t で 9_REMIND.org にリマインドタスクを登録
+(setq org-capture-templates
+      '(
+	("t" "Todo" entry (file+headline "~/Documents/org/9_REMIND.org" "[#C] TODO")
+         "* TODO [#C] %? (wrote on %U)")
+	))
+
+;; org-mermaid
+(leaf ob-mermaid
+  :ensure t
+  :init
+  (org-babel-do-load-languages
+    'org-babel-load-languages
+    '((mermaid . t))
+    )
+  )
 
 ;;; restart utility
 (leaf restart-emacs
@@ -204,20 +197,15 @@
 (setq default-directory (concat (getenv "HOME") "/" "Documents"))
 (cd (concat (getenv "HOME") "/" "Documents"))
 
-(setq default-frame-alist
-      '(
-	(font . "PlemolJP Console NF 17")
-	))
+;;;; Font
+;(setq default-frame-alist
+;      '(
+;	(font . "HackGen Console NF 16")
+;	))
+(set-face-attribute 'default nil :family "HackGen Console NF" :height 140)
 
 (leaf solarized-theme
   :ensure t
   :config
   (load-theme 'solarized-light t))
-
-(leaf highlight-indent-guides
-  :doc "Indent line"
-  :ensure t
-  :config
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  )
 

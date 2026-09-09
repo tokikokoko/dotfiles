@@ -53,6 +53,10 @@ function git_stage_list
 end
 
 function gs
+    git status
+end
+
+function gst
     git add (git_stage_list)
 end
 
@@ -85,9 +89,9 @@ function stop_container
 end
 
 # pbcopy
-function pbcopy
-    xclip -selection c
-end
+# function pbcopy
+#     xclip -selection c
+# end
 
 # current_branch
 function current_branch
@@ -134,3 +138,8 @@ end
 
 # Add current dir path
 abbr --add apath 'set -x PATH $PWD/bin $PATH'
+
+# App
+abbr --add lzg 'lazygit'
+# abbr --add acc 'CLAUDE_CODE_SUBAGENT_MODEL=claude-sonnet-5 claude --append-system-prompt "基本的にタスクや作業の実行は、適切な粒度でsubagentsに実行手順が明確な指示を与えて委譲すること。あなたは全体進行の俯瞰と立案を行う。自己判断による例外は認める"'
+abbr --add acc 'claude --append-system-prompt "基本的にタスクや作業の実行は、適切な粒度でsubagentsに実行手順が明確な指示を与えて委譲すること。あなたは全体進行の俯瞰と立案を行う。自己判断による例外は認める"'

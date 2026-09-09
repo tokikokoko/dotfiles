@@ -13,15 +13,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 require('plugins')
 
--- require('fzf-functions')
 require('keymap')
 require('completion')
 
 -- Colorscheme settings
 vim.go.termguicolors = true
-vim.go.background = 'light'
-vim.cmd [[colorscheme catppuccin-latte]]
--- vim.cmd[[colorscheme melange]]
+vim.go.background = 'dark'
+vim.cmd [[colorscheme catppuccin-frappe]]
 
 -- util function
 local function executable(e)
@@ -51,11 +49,39 @@ if executable('rg') then
 end
 
 -- LSP
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = {
+    format = function(diagnostic)
+      return string.format("%s (%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
+    end,
+  },
+})
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
+    },
+  },
+})
 require("mason").setup()
 require('mason-lspconfig').setup()
 vim.diagnostic.config({
   virtual_text = false,
   underline = false,
+})
+
+vim.opt.signcolumn = "yes"
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "ruby",
+  callback = function()
+    vim.lsp.start {
+      name = "remote-rubocop",
+      cmd = { "docker", "compose", "exec", "-it", vim.env.DEV_CONTAINER_NAME, "bundle", "exec", "rubocop", "--lsp" },
+    }
+  end,
 })
 
 -- Show line diagnostics automatically in hover window
@@ -199,7 +225,10 @@ vim.cmd([[au FileType markdown nnoremap <Leader>fo :vim "^\#\+" % \| cw<CR>]])
 -- set autoread
 -- trigger `autoread` when files changes on disk
 vim.cmd([[set autoread]])
-vim.cmd([[autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif]])
+vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
+    pattern = "*",
+    command = "checktime",
+})
 -- notification after file change
 vim.cmd(
 [[autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]])

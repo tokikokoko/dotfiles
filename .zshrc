@@ -75,3 +75,4 @@ test -r $HOME/.rbenv && eval "$(rbenv init - --no-rehash)" > /dev/null 2> /dev/n
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+. "/Users/iwatani-keita/.deno/env"
