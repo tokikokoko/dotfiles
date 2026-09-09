@@ -9,7 +9,11 @@ set -x PATH ~/.local/bin $PATH
 set DOT $HOME/dotfiles
 set FISH_PATH (which fish)
 set -x TERM xterm-256color
-set -x EDITOR vim
+if type -q nvim
+    set -x EDITOR nvim
+else
+    set -x EDITOR vim
+end
 
 # fcitx
 set -x GTK_IM_MODULE fcitx
@@ -90,3 +94,8 @@ set -x KUBECONFIG $HOME/.kube/config
 if test -d $HOME/google-cloud-sdk/bin
     set -x PATH $HOME/google-cloud-sdk/bin $PATH
 end
+
+if type -q mise
+    mise activate fish | source
+end
+
