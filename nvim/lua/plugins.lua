@@ -7,6 +7,11 @@ return require('lazy').setup({
   "neovim/nvim-lspconfig",
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
+  {
+    'nvim-treesitter/nvim-treesitter',
+    lazy = false,
+    build = ':TSUpdate'
+  },
 
   -- completion
   'hrsh7th/cmp-nvim-lsp',
