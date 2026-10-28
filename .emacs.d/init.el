@@ -202,7 +202,7 @@
 ;      '(
 ;	(font . "HackGen Console NF 16")
 ;	))
-(set-face-attribute 'default nil :family "HackGen Console NF" :height 140)
+; (set-face-attribute 'default nil :family "HackGen Console NF" :height 140)
 
 (leaf solarized-theme
   :ensure t
