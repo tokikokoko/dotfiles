@@ -61,7 +61,15 @@ export SCM_CHECK=true
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
 
+. "$HOME/.asdf/asdf.sh"
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-. "/Users/iwatani-keita/.deno/env"
+
+# If not running interactively, don't do anything
+case $- in
+	*i*) ;;
+	*) return ;;
+esac
+

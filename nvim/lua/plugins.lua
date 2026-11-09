@@ -38,8 +38,14 @@ return require('lazy').setup({
 
   -- Markdown
   'plasticboy/vim-markdown',
-
-  'frenzyexists/aquarium-vim',
+  {
+    "delphinus/md-render.nvim",
+    version = "*",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons", version = "*" }, -- optional: file type icons in code blocks
+      { "delphinus/budoux.lua", version = "*" }, -- optional: CJK phrase-level line breaking
+    }
+  },
 
   -- Task runner
   'thinca/vim-quickrun',
