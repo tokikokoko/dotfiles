@@ -64,4 +64,4 @@ vim.api.nvim_set_keymap('n', '<leader>gf', ':<C-u>cfile<Space>', {})
 -- vim.cmd([[vnoremap <C-y> :'<,'>w !xclip -selection clipboard<Cr><Cr>]])
 
 -- markdown
-vim.api.nvim_set_keymap('n', '<leader>mp', ':MdRender tab', {})
+vim.api.nvim_set_keymap('n', '<leader>mp', ':MdRender tab<CR>', {})
